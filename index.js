@@ -32,13 +32,13 @@ app.get('/', (req, res) => {
 
 
 // require orderRoutes
-// const orderRoutes = require('./routes/order.routes')
+const orderRoutes = require('./routes/order.routes')
 
 // verify token before serving 
 // app.use(Middleware.decodeToken)
 
 // using orders routes as middleware
-// app.use('/api/v1/orders', orderRoutes)
+app.use('/api/v1/orders', orderRoutes)
 
   mongoose.connect(process.env.MONGO_URL,
     {useNewUrlParser: true, useUnifiedTopology: true})
