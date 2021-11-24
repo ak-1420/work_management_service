@@ -12,7 +12,6 @@ router.get('/',orderController.findAll);
 //fetch order by id
 router.get('/:orderId',orderController.findById);
 
-
 //update order by id
 router.put('/:orderId',orderController.update);
 

@@ -1,6 +1,5 @@
 const Order = require('../models/Order')
 
-
 // method to create a work order
 exports.create = async (req , res) => {
 
@@ -33,20 +32,31 @@ exports.update = async (req ,res) => {
 
 
 // method to find all work orders
-exports.findAll = async (req , res) => {
-     
-    res.send('find all work orders')
+exports.findAll = async ( req , res) => {
+
+    try {
+        const allOrders = await Order.find()
+
+        res.status(200).send(allOrders)
+        
+    } catch (error) {
+        res.status(400).json(error)
+    }
 }
 
 
 // method to find a work order by Id
 exports.findById = async (req  , res) => {
-   try {
-       const order = await Order.findById(req.params.orderId)
-       res.status(200).json(order)
-   } catch (error) {
-       res.status(400).json(error)
-   }
+    try {
+
+          const order = await Order.find({"orderId":req.params.orderId})
+          res.status(200).send(order)
+        }
+    catch (error) {
+        res.status(400).send(error)
+    }
 }
+
+
 
 
