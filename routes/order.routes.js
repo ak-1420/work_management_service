@@ -15,4 +15,9 @@ router.get('/:orderId',orderController.findById);
 //update order by id
 router.put('/:orderId',orderController.update);
 
+//delete order by id
+router.delete('/:orderId',orderController.delete)
+
+
+
 module.exports = router

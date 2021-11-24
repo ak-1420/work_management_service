@@ -15,21 +15,37 @@ exports.create = async (req , res) => {
 
 // method to update a work order
 
-exports.update = async (req ,res) => {
-     
+exports.update = async (req , res) => {
+   
     try {
-        
-        await post.updateOne({$set:req.body})
+        // find and update
+ 
+        const filter = {orderId : req.params.orderId}
+        const update = {$set : req.body}
 
+        const order = await Order.findOneAndUpdate( filter, update ,{new : true})
+
+        // send the response if the order is updated
         res.status(200).send({
-            message:"the work order has been updated"
+            message: (order !== null ) ? 'work order updated successfully!' : 'order Id not exists!',
+            updatedOrder: order
         })
         
     } catch (error) {
-        res.send(500).json(error)
+        res.status(400).send(error)
     }
 }
 
+// methid to delete a work order by id
+exports.delete = async (req ,res) => {
+    
+    try {
+          const deletedOrder = await Order.deleteOne({"orderId" : req.params.orderId})
+          res.status(200).send(deletedOrder)
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
 
 // method to find all work orders
 exports.findAll = async ( req , res) => {
