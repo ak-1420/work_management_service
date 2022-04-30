@@ -6,12 +6,8 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const helmet = require('helmet')
 const morgan = require('morgan')
-
-
 const Middleware = require('./middleware')
-
 const port = process.env.PORT || 3000
-
 dotenv.config()
 
 app.use(express.json())
@@ -48,4 +44,4 @@ app.use('/api/v1/orders', orderRoutes)
         })
     }).catch((error) => {
         console.log(`${error} \n did not connect to database!` )
-    })
+})
