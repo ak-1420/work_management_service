@@ -22,7 +22,7 @@ app.use(express.urlencoded({
 
 
 app.get('/', (req, res) => {
-    res.send('<center><h1> Work Order Management  Microservice </h1></center>')
+    res.send('<center><h1> Work  Management  Microservice </h1></center>')
     
 })
 
